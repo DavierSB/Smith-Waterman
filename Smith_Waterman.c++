@@ -55,7 +55,6 @@ class SWCalculator
         for (int k = 1; k <= i; k++)
         {
             temp = H[i - k][j] + this->gap_weight(k);
-            if((i == 4) && (j == 3))cout<<H[i][j]<<" "<<H[i - k][j]<<" "<<temp<<"\n";
             update_cell(temp, Up, i, j);
         }
         for (int k = 1; k <= j; k++)
@@ -178,7 +177,24 @@ class SWCalculator
 void Test_Case();
 int main()
 {
-    //Test_Case();
+    //Por ahora esta cableado el caso de prueba de Wikipedia, pero ponga el q usted quiera
+    Test_Case();
 }
 //Ahora pegue aqui el caso de prueba que desea ejecutar, de los que se encuentran en Test_Case.txt
 //o elabore su propio caso de prueba.
+int gap_weight_lineal(int k)
+{
+    return -3;
+}
+void Test_Case()
+{
+    string s1 = "GGTTGACTA";
+    string s2 = "TGTTACGG";
+    string aux = "ACGT";
+    map<pair<char, char>, int> dict;
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            dict[make_pair(aux[i], aux[j])] = (i == j)?3:-3;
+    SWCalculator MySWCalculator = SWCalculator(dict, gap_weight_lineal);
+    MySWCalculator.Alinear(s1, s2);
+}
