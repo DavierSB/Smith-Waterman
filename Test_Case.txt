@@ -1,19 +1,17 @@
 int gap_weight_lineal(int k)
 {
-    return -2;
+    return -3;
 }
 int gap_weight_affine(int k)
 {
     int create_gap = -1;
     int expand_gap = -0.3;
-    return create_gap + expand_gap*k;
+    if (k == 1)return create_gap;
+    return expand_gap;
 }
 
 void Test_Case()
 {
-    /*string s1 = "TACGGGCCCGCTAC";
-    string s2 = "TAGCCCTATCGGTCA";
-    string aux = "ACGT";*/
     string s1 = "AATCG";
     string s2 = "AACG";
     string aux = "ATGC";
@@ -21,6 +19,32 @@ void Test_Case()
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
             dict[make_pair(aux[i], aux[j])] = (i == j)?1:-1;
+    SWCalculator MySWCalculator = SWCalculator(dict, gap_weight_lineal);
+    MySWCalculator.Alinear(s1, s2);
+}
+
+void Test_Case()
+{
+    string s1 = "TACGGGCCCGCTAC";
+    string s2 = "TAGCCCTATCGGTCA";
+    string aux = "ACGT";
+    map<pair<char, char>, int> dict;
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            dict[make_pair(aux[i], aux[j])] = (i == j)?1:-1;
+    SWCalculator MySWCalculator = SWCalculator(dict, gap_weight_lineal);
+    MySWCalculator.Alinear(s1, s2);
+}
+
+void Test_Case()
+{
+    string s1 = "GGTTGACTA";
+    string s2 = "TGTTACGG";
+    string aux = "ACGT";
+    map<pair<char, char>, int> dict;
+    for (int i = 0; i < 4; i++)
+        for (int j = 0; j < 4; j++)
+            dict[make_pair(aux[i], aux[j])] = (i == j)?3:-3;
     SWCalculator MySWCalculator = SWCalculator(dict, gap_weight_lineal);
     MySWCalculator.Alinear(s1, s2);
 }
