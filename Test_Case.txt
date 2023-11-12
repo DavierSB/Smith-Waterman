@@ -1,8 +1,8 @@
-float gap_weight_lineal(int k)
+int gap_weight_lineal(int k)
 {
     return -2;
 }
-float gap_weight_affine(int k)
+int gap_weight_affine(int k)
 {
     int create_gap = -1;
     int expand_gap = -0.3;
@@ -17,7 +17,7 @@ void Test_Case()
     string s1 = "AATCG";
     string s2 = "AACG";
     string aux = "ATGC";
-    map<pair<char, char>, float> dict;
+    map<pair<char, char>, int> dict;
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
             dict[make_pair(aux[i], aux[j])] = (i == j)?1:-1;
